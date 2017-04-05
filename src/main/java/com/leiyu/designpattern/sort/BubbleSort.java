@@ -41,10 +41,28 @@ public class BubbleSort<T extends Comparable> {
         return arrs;
     }
 
+    public T[] sortAsc1(T[] arrs){
+        if(null == arrs || arrs.length < 2 ){
+            return arrs;
+        }
+        for(int i = 0 ; i < arrs.length ; i++){
+            for(int j = 1 ; j < arrs.length - i ; j++){
+                T fnum = arrs[j - 1];
+                T lnum = arrs[j];
+                if(lnum.compareTo(fnum) < 0){
+                    T swap = lnum;
+                    arrs[j] = fnum;
+                    arrs[j-1] = swap;
+                }
+            }
+        }
+        return arrs;
+    }
+
     public static void main(String[] args) {
         BubbleSort<Integer> sort = new BubbleSort<Integer>();
         Integer[] nums = {1,20,4,6,3,2,8,7,0};
-        sort.sortAsc(nums);
+        sort.sortAsc1(nums);
         for(Integer num : nums){
             System.out.println(num);
         }
@@ -54,5 +72,10 @@ public class BubbleSort<T extends Comparable> {
         for(Integer num : nums){
             System.out.println(num);
         }
+
+//        int[] arr = {2,3,4,5};
+//        int a = arr[2];
+//        arr[2] = 7;
+//        System.out.println("a:" + a + ", arr[2]:" + arr[2]);
     }
 }
