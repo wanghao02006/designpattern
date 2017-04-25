@@ -1,4 +1,4 @@
-package com.leiyu.designpattern.sort;
+package com.leiyu.algorithm.sort;
 
 /**
  * Created by wh on 2017/4/1.

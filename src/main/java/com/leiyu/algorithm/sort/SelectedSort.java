@@ -1,4 +1,4 @@
-package com.leiyu.designpattern.sort;
+package com.leiyu.algorithm.sort;
 
 /**
  * Created by wh on 2017/3/31.
@@ -7,22 +7,24 @@ public class SelectedSort<T extends Comparable> {
 
 
     public T[] sortAsc(T[] arrs){
-        if (null == arrs){
-            return null;
+        if (null == arrs || arrs.length < 2){
+            return arrs;
         }
 
         int i = 0 ;
+        int index = 0;
         while (i < arrs.length){
-            T numi = arrs[i];
+            index = i;
             for(int j = i+1 ; j < arrs.length ; j++){
-                T now = arrs[j];
-                if(now.compareTo(numi) < 0){
-                    T swap = numi;
-                    numi = now;
-                    arrs[j] = swap;
+                if(arrs[index].compareTo(arrs[j]) > 0){
+                    index = j;
                 }
             }
-            arrs[i] = numi;
+            if(index != i){
+                T swap = arrs[i];
+                arrs[i] = arrs[index];
+                arrs[index] = swap;
+            }
             i++;
         }
         return arrs;
@@ -30,22 +32,24 @@ public class SelectedSort<T extends Comparable> {
 
 
     public T[] sortDesc(T[] arrs){
-        if (null == arrs){
-            return null;
+        if (null == arrs || arrs.length < 2){
+            return arrs;
         }
 
         int i = 0 ;
+        int index = 0;
         while (i < arrs.length){
-            T numi = arrs[i];
+            index = i;
             for(int j = i+1 ; j < arrs.length ; j++){
-                T now = arrs[j];
-                if(now.compareTo(numi) > 0){
-                    T swap = numi;
-                    numi = now;
-                    arrs[j] = swap;
+                if(arrs[index].compareTo(arrs[j]) < 0){
+                    index = j;
                 }
             }
-            arrs[i] = numi;
+            if(index != i){
+                T swap = arrs[i];
+                arrs[i] = arrs[index];
+                arrs[index] = swap;
+            }
             i++;
         }
         return arrs;

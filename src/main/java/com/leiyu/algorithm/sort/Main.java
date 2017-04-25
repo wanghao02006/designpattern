@@ -1,6 +1,5 @@
-package com.leiyu.designpattern.sort;
+package com.leiyu.algorithm.sort;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
