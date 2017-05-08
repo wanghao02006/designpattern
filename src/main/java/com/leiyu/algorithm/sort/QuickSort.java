@@ -6,42 +6,46 @@ package com.leiyu.algorithm.sort;
 public class QuickSort<T extends Comparable> {
 
     public T[] sortAsc(T[] arrs){
-         sortQuick(arrs,0,(arrs.length -1));
+         sortQuick(arrs,0,arrs.length-1,true);
         return arrs;
     }
 
 
-    private void sortQuick(T[] arrs,int first,int last){
-        T fnum = arrs[first];
-        while (last - first > 1){
-            for(int i = first ; i < last ; i++){
-                if(arrs[i].compareTo(fnum) < 0){
-                    arrs[first++] = arrs[i];
-                    break;
-                }
+    private void sortQuick(T[] arrs,int left,int right,boolean isAsc){
+        int ltemp = left,rtemp = right,baseIndex = (left + right)/2;
+        T base = arrs[baseIndex];
+        T temp = null;
+        while (ltemp < rtemp){
+            while (arrs[ltemp].compareTo(base) < 0){
+                ltemp++;
             }
-            if(first == last){
-                arrs[first] = fnum;
-                break;
+            while (arrs[rtemp].compareTo(base) > 0){
+                rtemp--;
             }
-            for(int j = last ; j > first; j--){
-                if(arrs[j].compareTo(fnum) > 0){
-                    arrs[last--] = arrs[j];
-                    break;
-                }
-            }
-            if(first == last){
-                arrs[first] = fnum;
-                break;
+            if(ltemp <= rtemp){
+                temp = arrs[rtemp];
+                arrs[rtemp] = arrs[ltemp];
+                arrs[ltemp] = temp;
+                --rtemp;
+                ++ltemp;
             }
         }
-        sortQuick(arrs,0,first);
-        sortQuick(arrs,first+1,arrs.length);
+        if(ltemp == rtemp){
+            ltemp++;
+        }
+        if(left < rtemp){
+            sortQuick(arrs,left,ltemp-1,true);
+        }
+        if(ltemp < right){
+            sortQuick(arrs,rtemp+1,right,true);
+        }
+
     }
 
     public static void main(String[] args) {
         QuickSort<Integer> sort = new QuickSort<Integer>();
-        Integer[] nums = {1,20,4,6,3,2,8,7,0};
+//        Integer[] nums = {1,20,4,6,3,2,8,7,0};
+        Integer[] nums = {1,2,2,2,3,2,8,7,0};
         sort.sortAsc(nums);
         for(Integer num : nums){
             System.out.println(num);

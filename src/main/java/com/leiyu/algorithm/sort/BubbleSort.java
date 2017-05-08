@@ -9,14 +9,12 @@ public class BubbleSort<T extends Comparable> {
         if(arrs == null){
             return  null;
         }
-        for(int i = arrs.length -1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-                T last = arrs[i];
-                T now = arrs[j];
-                if(now.compareTo(last) > 0){
-                    T swap = last;
-                    arrs[i] = now;
-                    arrs[j] = swap;
+        for(int i = 1 ; i < arrs.length ; i++){
+            for(int j = 0 ; j < arrs.length - i ; j++){
+                if(arrs[j].compareTo(arrs[j+1]) > 0){
+                    T swap = arrs[j];
+                    arrs[j] = arrs[j+1];
+                    arrs[j+1] = swap;
                 }
             }
         }
@@ -27,32 +25,12 @@ public class BubbleSort<T extends Comparable> {
         if(arrs == null){
             return  null;
         }
-        for(int i = arrs.length -1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-                T last = arrs[i];
-                T now = arrs[j];
-                if(now.compareTo(last) < 0){
-                    T swap = last;
-                    arrs[i] = now;
-                    arrs[j] = swap;
-                }
-            }
-        }
-        return arrs;
-    }
-
-    public T[] sortAsc1(T[] arrs){
-        if(null == arrs || arrs.length < 2 ){
-            return arrs;
-        }
-        for(int i = 0 ; i < arrs.length ; i++){
-            for(int j = 1 ; j < arrs.length - i ; j++){
-                T fnum = arrs[j - 1];
-                T lnum = arrs[j];
-                if(lnum.compareTo(fnum) < 0){
-                    T swap = lnum;
-                    arrs[j] = fnum;
-                    arrs[j-1] = swap;
+        for(int i = 1 ; i < arrs.length ; i++){
+            for(int j = 0 ; j < arrs.length - i ; j++){
+                if(arrs[j].compareTo(arrs[j+1]) < 0){
+                    T swap = arrs[j];
+                    arrs[j] = arrs[j+1];
+                    arrs[j+1] = swap;
                 }
             }
         }
@@ -62,15 +40,13 @@ public class BubbleSort<T extends Comparable> {
     public static void main(String[] args) {
         BubbleSort<Integer> sort = new BubbleSort<Integer>();
         Integer[] nums = {1,20,4,6,3,2,8,7,0};
-        sort.sortAsc1(nums);
+        sort.sortAsc(nums);
         for(Integer num : nums){
-            System.out.println(num);
+            System.out.print(num + " ");
         }
-
-        System.out.println("---------------------------------------");
         sort.sortDesc(nums);
         for(Integer num : nums){
-            System.out.println(num);
+            System.out.print(num + " ");
         }
 
 //        int[] arr = {2,3,4,5};

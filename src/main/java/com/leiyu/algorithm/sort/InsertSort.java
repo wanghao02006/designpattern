@@ -12,15 +12,13 @@ public class InsertSort<T extends Comparable> {
         }
 
         for(int i = 1 ; i < arrs.length; i++){
-            for(int j = i ; j > 0 ; j--){
-                T lnum = arrs[j];
-                T fnum = arrs[j - 1];
-                if(lnum.compareTo(fnum) < 0){
-                    T swap = lnum;
-                    arrs[j] = fnum;
-                    arrs[j - 1] = swap;
-                }
+            T t = arrs[i];
+            int j = i;
+            while (j > 0 && arrs[j-1].compareTo(t) > 0){
+                arrs[j] = arrs[j-1];
+                j--;
             }
+            arrs[j] = t;
         }
         return arrs;
     }
@@ -31,17 +29,13 @@ public class InsertSort<T extends Comparable> {
         }
 
         for(int i = 1 ; i < arrs.length; i++){
-            for(int j = i ; j > 0 ; j--){
-                T lnum = arrs[j];
-                T fnum = arrs[j - 1];
-                if(lnum.compareTo(fnum) > 0){
-                    T swap = lnum;
-                    arrs[j] = fnum;
-                    arrs[j - 1] = swap;
-                }else{
-                    break;
-                }
+            T t = arrs[i];
+            int j = i;
+            while (j > 0 && arrs[j-1].compareTo(t) < 0){
+                arrs[j] = arrs[j-1];
+                j--;
             }
+            arrs[j] = t;
         }
 
         return arrs;

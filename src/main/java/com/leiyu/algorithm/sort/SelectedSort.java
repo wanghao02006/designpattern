@@ -10,24 +10,24 @@ public class SelectedSort<T extends Comparable> {
         if (null == arrs || arrs.length < 2){
             return arrs;
         }
-
-        int i = 0 ;
-        int index = 0;
-        while (i < arrs.length){
-            index = i;
-            for(int j = i+1 ; j < arrs.length ; j++){
-                if(arrs[index].compareTo(arrs[j]) > 0){
+        for(int i = 0 ; i < arrs.length ; i++){
+            int index = i;
+            for(int j = i + 1 ; j < arrs.length ; j++){
+                if(arrs[j].compareTo(arrs[index]) < 0){
                     index = j;
                 }
             }
-            if(index != i){
-                T swap = arrs[i];
-                arrs[i] = arrs[index];
-                arrs[index] = swap;
-            }
-            i++;
+            swap(arrs,index,i);
         }
         return arrs;
+    }
+
+    private void swap(T[] arrs, int index, int i) {
+        if(index != i ){
+            T swap = arrs[index];
+            arrs[index] = arrs[i];
+            arrs[i] = swap;
+        }
     }
 
 
@@ -36,22 +36,17 @@ public class SelectedSort<T extends Comparable> {
             return arrs;
         }
 
-        int i = 0 ;
-        int index = 0;
-        while (i < arrs.length){
-            index = i;
-            for(int j = i+1 ; j < arrs.length ; j++){
-                if(arrs[index].compareTo(arrs[j]) < 0){
+       for(int i = 0 ; i < arrs.length ; i++){
+            int index = i;
+            int j = arrs.length - 1;
+            while (j > i){
+                if(arrs[j].compareTo(arrs[index]) > 0){
                     index = j;
                 }
+                j--;
             }
-            if(index != i){
-                T swap = arrs[i];
-                arrs[i] = arrs[index];
-                arrs[index] = swap;
-            }
-            i++;
-        }
+            swap(arrs,index,i);
+       }
         return arrs;
     }
 
@@ -60,13 +55,12 @@ public class SelectedSort<T extends Comparable> {
         Integer[] nums = {1,20,4,6,3,2,8,7,0};
         sort.sortAsc(nums);
         for(Integer num : nums){
-            System.out.println(num);
+            System.out.print(num+" ");
         }
 
-        System.out.println("---------------------------------------");
         sort.sortDesc(nums);
         for(Integer num : nums){
-            System.out.println(num);
+            System.out.print(num + ",");
         }
     }
 
